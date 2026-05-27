@@ -1,7 +1,7 @@
 {
   "name": "boxcoin-app",
   "version": "1.0.0",
-  "main": "index.ts",
+  "main": "expo-router/entry",
   "dependencies": {
     "expo": "~56.0.5",
     "expo-constants": "~56.0.16",
