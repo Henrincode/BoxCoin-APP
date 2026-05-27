@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "BoxCoin-APP",
+    "scheme": "boxcoin-app",
     "slug": "BoxCoin-APP",
     "version": "1.0.0",
     "orientation": "portrait",
