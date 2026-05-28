@@ -1,9 +1,17 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { router } from "expo-router"
+
 
 export default function Index() {
     return (
         <View style={s.container}>
             <Text style={s.Text}>Olá mundo!</Text>
+            <TouchableOpacity onPress={() => router.navigate("objetivo")}>
+                <Text>Objetivo</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => router.navigate("em-progresso/67")}>
+                <Text>Em progresso</Text>
+            </TouchableOpacity>
         </View>
     )
 }
