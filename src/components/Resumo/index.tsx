@@ -1,11 +1,30 @@
-import { View, Text } from "react-native"
+import { MaterialIcons } from "@expo/vector-icons"
+import { View, Text, ColorValue } from "react-native"
 
-export default function Resumo() {
+import { styles } from "./style"
+
+export type ResumoProps = {
+    label: string
+    value: string
+}
+
+type Props = {
+    data: ResumoProps
+    icon: {
+        nomeIcone: keyof typeof MaterialIcons.glyphMap
+        corIcone: ColorValue
+    }
+    right?: boolean
+}
+
+export default function Resumo({ data, icon, right = false }: Props) {
     return (
-        <View>
-            <Text>
-                Resumo
-            </Text>
+        <View style={styles.container}>
+            <View style={[styles.header, right && { justifyContent: "flex-end" }]}>
+                <MaterialIcons name={icon.nomeIcone} size={16} color={icon.corIcone} />
+                <Text style={styles.label}>{data.label}</Text>
+            </View>
+            <Text style={styles.value}>{data.value}</Text>
         </View>
     )
 }

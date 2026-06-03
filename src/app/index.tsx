@@ -1,6 +1,19 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { router } from "expo-router"
-import HomeHeader from "@/components/HomeHeader";
+import HomeHeader, { HomeHeaderProps } from "@/components/HomeHeader";
+
+
+const RESUMO: HomeHeaderProps = {
+    total: "R$ 8.745,00",
+    imput: {
+        label: "Entradas",
+        value: "R$ 9.854,00"
+    },
+    output: {
+        label: "Saídas",
+        value: "-R$ 1.754,00"
+    }
+}
 
 
 export default function Index() {
@@ -14,7 +27,7 @@ export default function Index() {
                 <Text>Em progresso</Text>
             </TouchableOpacity> */}
 
-            <HomeHeader />
+            <HomeHeader data={RESUMO} />
         </View>
     )
 }
