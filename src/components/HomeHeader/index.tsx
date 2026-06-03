@@ -13,7 +13,7 @@ export type HomeHeaderProps = {
 }
 
 type Props = {
-    data: HomeHeader
+    data: HomeHeaderProps
 }
 
 export default function HomeHeader({ data }: Props) {

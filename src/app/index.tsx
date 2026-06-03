@@ -1,6 +1,8 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { router } from "expo-router"
 import HomeHeader, { HomeHeaderProps } from "@/components/HomeHeader";
+import Objetivos from "@/components/Objetivos";
+import Lista from "@/components/Lista";
 
 
 const RESUMO: HomeHeaderProps = {
@@ -15,19 +17,46 @@ const RESUMO: HomeHeaderProps = {
     }
 }
 
+const OBJETIVOS = [
+    {
+        id: "1",
+        nome: "Comprar cadeira ergonomica",
+        porcentagem: "50%",
+        meta: "R$ 2.000,00",
+        atual: "R$ 1.000,00"
+    },
+    {
+        id: "2",
+        nome: "Apple watch",
+        porcentagem: "75%",
+        meta: "R$ 1.000,00",
+        atual: "R$ 750,00"
+    },
+    {
+        id: "3",
+        nome: "AirPods",
+        porcentagem: "43%",
+        meta: "R$ 2.300,00",
+        atual: "R$ 1.000,00"
+    }
+]
+
+
 
 export default function Index() {
     return (
         <View >
-            {/* <Text style={s.Text}>Olá mundo!</Text>
-            <TouchableOpacity onPress={() => router.navigate("objetivo")}>
-                <Text>Objetivo</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => router.navigate("em-progresso/67")}>
-                <Text>Em progresso</Text>
-            </TouchableOpacity> */}
 
             <HomeHeader data={RESUMO} />
+
+            <Lista
+                titulo="Metas"
+                data={OBJETIVOS}
+                renderItem={() => <Objetivos />}
+                emptyMensagem="Nenhuma meta encontrada"
+                containerStyle={{ paddingHorizontal: 24 }}
+            />
+
         </View>
     )
 }
