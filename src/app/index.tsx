@@ -3,6 +3,8 @@ import { router } from "expo-router"
 import HomeHeader, { HomeHeaderProps } from "@/components/HomeHeader";
 import Objetivos from "@/components/Objetivos";
 import Lista from "@/components/Lista";
+import Button from "@/components/Button";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 
 const RESUMO: HomeHeaderProps = {
@@ -44,18 +46,30 @@ const OBJETIVOS = [
 
 
 export default function Index() {
+
+    const insets = useSafeAreaInsets()
+
     return (
-        <View >
+        <View style={{ flex: 1, paddingTop: insets.top }}>
 
             <HomeHeader data={RESUMO} />
 
             <Lista
                 titulo="Metas"
                 data={OBJETIVOS}
-                renderItem={() => <Objetivos />}
+                renderItem={({ item }) =>
+                    <Objetivos
+                        data={item}
+                        onPress={() => router.navigate(`/em-progresso/${item.id}`)}
+                    />
+                }
                 emptyMensagem="Nenhuma meta encontrada"
                 containerStyle={{ paddingHorizontal: 24 }}
             />
+
+            <View style={{ padding: 24, marginBottom: 32 }}>
+                <Button titulo="teste" onPress={() => router.navigate("/objetivo")} />
+            </View>
 
         </View>
     )

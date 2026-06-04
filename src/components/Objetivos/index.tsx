@@ -2,15 +2,27 @@ import { View, Text, TouchableOpacity, TouchableOpacityProps } from "react-nativ
 import { MaterialIcons } from "@expo/vector-icons"
 import { styles } from "./style"
 
-export default function Objetivos() {
+export type ObjetivosProps = {
+    id: string
+    nome: string
+    porcentagem: string
+    meta: string
+    atual: string
+}
+
+type Props = TouchableOpacityProps & {
+    data: ObjetivosProps
+}
+
+export default function Objetivos({ data, ...rest }: Props) {
     return (
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity style={styles.container} {...rest}>
             <View style={styles.contant}>
                 <Text style={styles.nome} >
-                    Comprar um pão de queijo
+                    {data.nome}
                 </Text>
                 <Text style={styles.status} >
-                    25% • R$ 250,00 de R$ 1.000,00
+                    {data.porcentagem} • {data.atual} de {data.meta}
                 </Text>
             </View>
             <MaterialIcons name="chevron-right" />

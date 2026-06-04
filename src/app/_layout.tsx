@@ -18,12 +18,12 @@ export default function Layout() {
             />
 
             {/* Configuração da aba objetivo */}
-            <Stack.Screen
-                name="objetivo/index"
+            {/* <Stack.Screen
+                name="objetivos/index"
                 options={{
                     title: "Meu Objetivo", // Nome amigável que substituirá "Objetivo/index"
                 }}
-            />
+            /> */}
             <Stack.Screen
                 name="em-progresso/[id]"
                 options={{

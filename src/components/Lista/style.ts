@@ -1,9 +1,29 @@
+import { colors } from "@/theme/colors";
 import { StyleSheet } from "react-native";
 
 
 export const styles = StyleSheet.create({
-    container: {},
-    listContent: {},
-    titulo: {},
-    empty: {}
+    container: {
+        flex: 1
+    },
+    listContent: {
+        gap: 16,
+        paddingTop: 16,
+        paddingBottom: 72
+    },
+    titulo: {
+        marginTop: 24,
+        paddingBottom: 16,
+        fontSize: 18,
+        color: colors.black,
+        borderBottomWidth: 1,
+        borderBottomColor: colors.gray[200]
+    },
+    empty: {
+        fontSize: 14,
+        color: colors.gray[500],
+        flex:1,
+        textAlign: "center",
+        paddingTop: 16,
+    }
 })
