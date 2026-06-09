@@ -1,6 +1,8 @@
 import Button from "@/components/Button";
 import Input from "@/components/Input";
+import InputCurrency from "@/components/InputCurrency";
 import PageHeader from "@/components/PageHeader";
+import { colors } from "@/theme/colors";
 import { View } from "react-native";
 
 export default function Objetivo() {
@@ -9,14 +11,16 @@ export default function Objetivo() {
             <PageHeader
                 titulo="Meta"
                 subtitulo="Economize para alcançar sua meta financeira."
-                rightButton={{
-                    icon: "edit",
-                    onPress: () => console.log('Editar Meta')
-                }}
             />
 
             <View style={{ marginTop: 32, gap: 24 }}>
                 <Input label="Nome da Meta" placeholder="Ex: Comprar um carro 0" />
+                <InputCurrency
+                    label="Valor alvo"
+                    placeholder="Ex: Comprar um carro 0"
+                    value={0}
+
+                />
                 <Button
                     titulo="Salvar"
                     onPress={() => console.log("Salvar Meta")}
