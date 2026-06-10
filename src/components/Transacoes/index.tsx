@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import { styles } from './styles'
 import { MaterialIcons } from '@expo/vector-icons'
 import { colors } from '@/theme/colors'
-import { TransacoesTypes } from '@/utils/TransasoesTypes'
+import { TransacoesTypes } from '@/utils/TransacoesTypes'
 
 export type TrasacoesProps = {
     id: string
