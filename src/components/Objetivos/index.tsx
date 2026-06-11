@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity, TouchableOpacityProps } from "react-nativ
 import { MaterialIcons } from "@expo/vector-icons"
 import { styles } from "./style"
 
-export type ObjetivosProps = {
+export type ObjetivoProps = {
     id: string
     nome: string
     porcentagem: string
@@ -11,7 +11,7 @@ export type ObjetivosProps = {
 }
 
 type Props = TouchableOpacityProps & {
-    data: ObjetivosProps
+    data: ObjetivoProps
 }
 
 export default function Objetivos({ data, ...rest }: Props) {
