@@ -106,7 +106,7 @@ export default function Index() {
             />
 
             <View style={{ padding: 24, marginBottom: 32 }}>
-                <Button titulo="teste" onPress={() => router.navigate("/objetivo")} />
+                <Button titulo="Nova Meta" onPress={() => router.navigate("/objetivo")} />
             </View>
 
         </View>

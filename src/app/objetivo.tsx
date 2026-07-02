@@ -4,7 +4,7 @@ import InputCurrency from "@/components/InputCurrency";
 import PageHeader from "@/components/PageHeader";
 import { colors } from "@/theme/colors";
 import { Alert, View } from "react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { router, useLocalSearchParams } from "expo-router";
 import { useBoxCoinDatabase } from "@/database/useBoxCoinDatabase.";
 
@@ -25,9 +25,27 @@ export default function Objetivo() {
         }
 
         if (params.id) {
-            // update
+            atualizarDadosBanco()
         } else {
             salvarDadosBanco()
+        }
+    }
+
+    async function atualizarDadosBanco() {
+        try {
+            await boxCoinDatabase.update({
+                name: nomeMeta,
+                amount: Number(valor),
+                id: Number(params.id)
+            })
+
+            Alert.alert("Sucesso", "Meta atualizada com sucesso", [
+                { text: "Ok", onPress: () => router.back() }
+            ])
+
+        } catch (error) {
+            Alert.alert("Erro", "Falha ao atualizar a meta")
+            console.log(error)
         }
     }
 
@@ -56,11 +74,58 @@ export default function Objetivo() {
         }
     }
 
+
+    async function fetchDetalhes(id: number) {
+        try {
+            const response = boxCoinDatabase.show(id)
+            setNomeMeta(response?.name ?? "")
+            setValor(response?.amount ?? 0)
+        } catch (error) {
+            Alert.alert("Erro", "Não foi possivel carregar detalhes da meta")
+            console.log(error)
+        }
+    }
+
+    async function fnUserDelete() {
+        try {
+            if (!params.id) {
+                return Alert.alert("Erro", "Não foi possivel identificar a meta")
+            }
+
+            Alert.alert("Atenção", "Realmente excluir essa meta", [
+                { text: "Cancelar", style: "cancel" },
+                { text: "Sim", onPress: async () => { await remover() } }
+            ])
+        } catch (error) {
+            Alert.alert("Erro", "Erro ao excluir a meta")
+            console.log(error)
+        }
+    }
+
+    async function remover() {
+        await boxCoinDatabase.delete(Number(params.id))
+        Alert.alert("Sucesso", "Meta excluida", [
+            { text: 'ok', onPress: () => router.replace("/") }
+        ])
+    }
+
+    useEffect(() => {
+        if (params.id) {
+            fetchDetalhes(Number(params.id))
+        }
+    }, [params.id])
+
     return (
         <View style={{ flex: 1, padding: 24, gap: 32 }}>
             <PageHeader
                 titulo="Meta"
                 subtitulo="Economize para alcançar sua meta financeira."
+                rightButton={
+                    params.id ? {
+                        icon: 'delete',
+                        onPress: () => fnUserDelete()
+                    } : undefined
+                }
             />
 
             <View style={{ marginTop: 32, gap: 24 }}>
